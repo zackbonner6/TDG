@@ -1,0 +1,19 @@
+name: Build Windows VST3
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -S TheDirtyGobbler -B build -A x64
+      - name: Build
+        run: cmake --build build --config Release --parallel
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TheDirtyGobbler-VST3-Windows
+          path: build/TheDirtyGobbler_artefacts/Release/VST3/
