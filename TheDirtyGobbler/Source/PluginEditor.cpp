@@ -220,12 +220,6 @@ void MainPanel::showSaveDialog()
             if (proc.saveUserPreset (name))
                 refreshPresetBox();
         }
-        MessageManager::callAsync ([safe = Component::SafePointer<MainPanel> (this)]
-        {
-            if (safe != nullptr)
-                safe->saveDialog.reset();
-        });
-    }), false);
 }
 
 // ============================================================================
